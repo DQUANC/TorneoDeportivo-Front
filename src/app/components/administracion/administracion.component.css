@@ -1,0 +1,14 @@
+.cent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #7878DB;
+    color: white;
+}
+
+.back{
+    background-color: #D7D7BF   ;
+    display: flex;
+    flex-direction: column;
+     height:100vh;
+}

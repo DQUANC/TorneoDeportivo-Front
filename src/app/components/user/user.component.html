@@ -1,0 +1,111 @@
+
+<div class="cent">
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal"><img class="m-3" src="../../../assets/img/agregar.png"
+            width="80px"></a>
+    <div class="cent1">
+        <h2 class="cent1">Usuarios</h2>
+    </div>
+</div>
+
+<body class="back">
+    <div class="row">
+        <div *ngFor="let user of users " class="card m-4" style="width: 18rem;">
+            <div *ngIf="users" class="card-body">
+                <h3 class="mt-1 mb-1">{{user.username}}</h3>
+                <h4 class="mt-1 mb-1 text-muted"><i>{{user.name}}</i></h4>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Phone:</b> {{user.phone}}</li>
+                <li class="list-group-item"><b>Email:</b> {{user.email}}</li>
+                    <div class="text-center">
+                        <button (click)="getClient(user._id)" class="btn btn-info mb-2 me-4 mt-3"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                            aria-controls="offcanvasExample">Update</button>
+                        <button (click)="deleteClient(user._id)"
+                            class="btn btn-danger ms-4 mb-2 mt-3">Delete</button>
+                    </div>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear Administrador</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form #addUserform="ngForm">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input [(ngModel)]="user.username" name="username" type="text" class="form-control"
+                                 aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input [(ngModel)]="user.password" name="password" type="password" class="form-control"
+                                >
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Name</label>
+                            <input [(ngModel)]="user.name" name="name" type="text" class="form-control"
+                                >
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Phone</label>
+                            <input [(ngModel)]="user.phone" name="phone" type="number" class="form-control"
+                                >
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Email</label>
+                            <input [(ngModel)]="user.email" name="email" type="email" class="form-control"
+                               >
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button (click)="createAdmin(addUserform)" type="button" class="btn btn-success"
+                        data-bs-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Update Client</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+
+            <form (ngSubmit)="updateClient()">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Username</label>
+                    <input [(ngModel)]="updateUser.username" name="username" type="text" class="form-control"
+                         aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label  class="form-label">Name</label>
+                    <input [(ngModel)]="updateUser.name" name="name" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Phone</label>
+                    <input [(ngModel)]="updateUser.phone" name="phone" type="number" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Email</label>
+                    <input [(ngModel)]="updateUser.email" name="email" type="email" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Role</label>
+                    <input [(ngModel)]="updateUser.role" name="role" type="text" class="form-control">
+                </div>
+                    <button type="submit" class="btn btn-success mt-3">Update</button>
+            </form>
+        </div>
+    </div>
+</body>

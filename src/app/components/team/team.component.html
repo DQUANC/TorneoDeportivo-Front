@@ -1,0 +1,166 @@
+<div class="cent">
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal"><img class="m-3" src="../../../assets/img/agregar.png"
+            width="80px"></a>
+    <div class="cent1">
+        <h2 class="cent1">{{leagueName.name}}</h2>
+    </div>
+    <a class="cent2" data-bs-toggle="modal" data-bs-target="#exampleModal1"><img class="m-3" src="../../../assets/img/results.png"
+        width="80px"></a>
+</div>
+
+<body class="back">
+    <div class="row">
+        <div *ngFor="let team of teams" class="card m-4" style="width: 18rem;">
+            <div *ngIf="teams" class="card-body">
+                <h3 class="mt-1 mb-1">{{team.name}}</h3>
+                <h4 class="mt-1 mb-1 text-muted"><i>{{team.points}}</i></h4>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Partidos Jugados:</b> {{team.matchesPlayed}}</li>
+                <li class="list-group-item"><b>Goles:</b> {{team.goalsScored}}</li>
+                    <div class="text-center">
+                        <button (click)="getTeam(team._id); getLeague(team.league)" class="btn btn-info mb-2 me-4 mt-3"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                            aria-controls="offcanvasExample">Update</button>
+                        <button (click)="deleteTeam(team._id)"
+                            class="btn btn-danger ms-4 mb-2 mt-3">Delete</button>
+                    </div>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Team</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form #addTeamform="ngForm">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Name</label>
+                            <input [(ngModel)]="team.name" name="name" type="text" class="form-control"
+                                id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                          <label class="from-label">League</label>
+                          <select [(ngModel)]="team.league" name="league" class="form-select"
+                              aria-label="Default select example">
+                              <option  value="{{leagueName.id}}">{{leagueName.name}}</option>
+                          </select>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button (click)="createTeam(addTeamform)" type="button" class="btn btn-success"
+                                data-bs-dismiss="modal">Save changes</button>
+                        </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="modal fade " id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Team</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form #addResultform="ngForm">
+                    
+                    <div class="mb-3">
+                      <label class="from-label">Matchday</label>
+                      <select [(ngModel)]="matchday.number" name="category" class="form-select"
+                          aria-label="Default select example">
+                          <option value="" disabled>Select Matchday</option>
+                          <option *ngFor="let team of teams, let i=index" value="{{ i }}"> {{ i }}
+                          </option>
+                      </select>
+                      <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">localTeam</label>
+                        <input [(ngModel)]="matchday.localTeam" name="name" type="text" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">localGoals</label>
+                        <input [(ngModel)]="matchday.localGoals" name="name" type="number" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">visitorTeam</label>
+                        <input [(ngModel)]="matchday.visitorTeam" name="name" type="text" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">visitorGoals</label>
+                        <input [(ngModel)]="matchday.visitorGoals" name="name" type="number" class="form-control"
+                            >
+                    </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button (click)="addResult(addResultform)" type="button" class="btn btn-success"
+                            data-bs-dismiss="modal">Save changes</button>
+                            
+                        
+                    </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Update Team</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+
+            <form >
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Name</label>
+                    <input [(ngModel)]="teamUpdate.name" name="name" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Points</label>
+                    <input [(ngModel)]="teamUpdate.points" name="stock" type="number" class="form-control"
+                        >
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Goals Scored</label>
+                    <input [(ngModel)]="teamUpdate.goalsScored" name="goalsScored" type="number" class="form-control"
+                        >
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Goals Against</label>
+                    <input [(ngModel)]="teamUpdate.goalsAgainst" name="goalsAgainst" type="number" class="form-control"
+                        >
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Goals Difference</label>
+                    <input [(ngModel)]="teamUpdate.goalsDifference" name="goalsDifference" type="number" class="form-control"
+                        id="exampleInputPassword1">
+                </div><div class="mb-3">
+                    <label for="price" class="form-label">Matches Played </label>
+                    <input [(ngModel)]="teamUpdate.matchesPlayed" name="matchesPlayed" type="number" class="form-control"
+                        >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">League</label>
+                    <select [(ngModel)]="teamUpdate.league" name="league" class="form-select" aria-label="Default select example">
+                        <option value="{{teamUpdate.league}}" disabled>{{leagueA.name}}</option>
+                        <option *ngFor="let league of leagues" value="{{ league._id}}">{{ league.name}}</option>
+                    </select>
+                </div>
+                <button (click)="updateTeam()" class="btn btn-success mt-4">Update</button>
+          </form>
+      </div>
+  </div>
+</body>

@@ -1,0 +1,114 @@
+<navbar></navbar>
+
+<section class="vh-100 bg-image"
+  style="background-image: url('../../../assets/img/fondo.jpg');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Crea una cuenta</h2>
+
+                
+
+              <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" class="mx-1 mx-md-4">
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <span *ngIf="!name.valid && name.touched" class="requiredField">
+                          Required field
+                        </span>
+                        <input [(ngModel)]="user.name" #name="ngModel" name="name" type="text" id="form3Example10c" class="form-control" required/>
+                        <label class="form-label" for="form3Example10c">Nombre</label>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <span *ngIf="!username.valid && username.touched" class="requiredField">
+                          Required field
+                        </span>
+                        <input [(ngModel)]="user.username" #username="ngModel" name="username" type="text" id="form3Example1c" class="form-control" required/>
+                        <label class="form-label" for="form3Example1c">Username</label>
+                      </div>
+                    </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <span *ngIf="!email.valid && email.touched" class="requiredField">
+                          Required field
+                        </span>
+                        <input [(ngModel)]="user.email" #email="ngModel" name="email" type="email" id="form3Example3c" class="form-control" required/>
+                        <label class="form-label" for="form3Example3c">Email</label>
+                      </div>
+                    </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <span *ngIf="!password.valid && password.touched" class="requiredField">
+                          Required field
+                        </span>
+                        <input [(ngModel)]="user.password" #password="ngModel" name="password" type="password" id="form3Example4c" class="form-control" required/>
+                        <label class="form-label" for="form3Example4c">Contraseña</label>
+                      </div>
+                    </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <span *ngIf="!repeat.valid && repeat.touched" class="requiredField">
+                          Required field
+                        </span>
+                        <input (keyup)="checkPass()" [(ngModel)]="repeatPass" #repeat="ngModel" name="repeatPass" type="password" id="form3Example14cd" class="form-control" required/>
+                        <label class="form-label" for="form3Example14cd">Confirmar la contraseña</label>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4" required>
+                      <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <span *ngIf="!phone.valid && phone.touched" class="requiredField">
+                          Required field
+                        </span>
+                        <input [(ngModel)]="user.phone" #phone="ngModel" name="phone" type="number" id="form3Example14aa" class="form-control" required/>
+                        <label class="form-label" for="form3Example14aa">Phone Number</label>
+                      </div>
+    
+                    </div>
+  
+                    <div class="form-check d-flex justify-content-center mb-5">
+                      <input
+                        ngModel
+                        name="check"
+                        class="form-check-input me-2"
+                        type="checkbox"
+                        value=""
+                        id="form2Example3c"
+                        required
+                      />
+                      <label class="form-check-label" for="form2Example3">
+                        Acepto todos los <a href="">Terminos de servicio/Uso</a>
+                      </label>
+                    </div>
+  
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <button [disabled]="!registerForm.form.valid" type="submit" class="btn btn-primary btn-lg">Registrarse</button>
+                    </div>
+
+              </form>
+
+              <p class="text-center text-muted mt-5 mb-0">¿Ya tienes una cuenta? <a routerLink="/login"
+                class="fw-bold text-body"><u>Ingresa Aquí</u></a></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

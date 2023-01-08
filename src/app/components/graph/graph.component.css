@@ -1,0 +1,19 @@
+.back{
+    background-color: #D7D7BF;
+    display: flex;
+    flex-direction: column;
+     height:120vh;
+}
+th{
+    text-align: center;
+    vertical-align: middle;
+}
+td{
+    text-align: center;
+}
+.grafica{
+    max-width: 800px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}

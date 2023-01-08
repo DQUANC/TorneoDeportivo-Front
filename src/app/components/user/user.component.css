@@ -1,0 +1,19 @@
+
+.cent{
+    display: flex;
+    align-items: center;
+    background-color: #7878DB;
+    color: white;
+}
+.cent1{
+    display: flex;
+    justify-content: center;
+    padding-left: 38%;
+}
+
+.back{
+    background-color: #D7D7BF   ;
+    display: flex;
+    flex-direction: column;
+     height:100vh;
+}

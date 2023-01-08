@@ -1,0 +1,77 @@
+
+<div class="cent">
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal"><img class="m-3" src="../../../assets/img/agregar.png"
+            width="80px"></a>
+    <div class="cent1">
+        <h2 class="cent1">Ligas</h2>
+    </div>
+</div>
+
+<body class="back">
+    <div class="row">
+        <div *ngFor="let league of leagues " class="card m-4" style="width: 18rem;">
+            <div *ngIf="leagues" class="card-body">
+                <h3 class="mt-1 mb-1">{{league.name}}</h3>
+                <h4 class="mt-1 mb-1 text-muted"><i>{{league.user.name}}</i></h4>
+            </div>
+            <ul class="list-group list-group-flush">
+                    <div class="text-center">
+                        <button (click)="getLeague(league._id)" class="btn btn-info mb-2 me-4 mt-3"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                            aria-controls="offcanvasExample">Update</button>
+                        <button (click)="deleteLeague(league._id)"
+                            class="btn btn-danger ms-4 mb-2 mt-3">Delete</button>
+                        <button [routerLink]="['/user/teams/'+ league._id]"
+                        class="btn btn-secondary ms-4 mb-2 mt-3">Teams</button>
+                        <button [routerLink]="['/user/graph/'+ league._id]"
+                        class="btn btn-warning ms-4 mb-2 mt-3">Graph</button>
+                    </div>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crear Administrador</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form #addLeagueform="ngForm">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input [(ngModel)]="league.name" name="username" type="text" class="form-control"
+                                aria-describedby="emailHelp">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button (click)="createLeague(addLeagueform)" type="button" class="btn btn-success"
+                        data-bs-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Update Client</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+
+            <form (ngSubmit)="updateLeagueA()">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Name</label>
+                    <input [(ngModel)]="updateLeague.name" name="username" type="text" class="form-control"
+                        aria-describedby="emailHelp">
+                </div>
+                    <button type="submit" class="btn btn-success mt-3">Update</button>
+            </form>
+        </div>
+    </div>
+</body>
